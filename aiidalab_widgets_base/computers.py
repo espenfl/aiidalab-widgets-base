@@ -287,7 +287,7 @@ class SshComputerSetup(ipw.VBox):
 
         timeout = 60
         print("Sending public key to {}... ".format(hostname), end="")
-        str_ssh = "HOME=/home/notebook ssh-copy-id {}@{}".format(username, hostname)
+        str_ssh = "ssh-copy-id {}@{}".format(username, hostname)
         if proxycmd:
             str_ssh += ' -o "ProxyCommand ssh -q -Y ' + proxycmd + ' netcat %h %p\n"'
         child = pexpect.spawn(str_ssh)
@@ -320,7 +320,7 @@ class SshComputerSetup(ipw.VBox):
         if index == 0:
             child.sendline(password)
             try:
-                child.expect("Now try logging into", timeout=5)
+                child.expect("Now try logging into", timeout=timeout)
             except TIMEOUT:
                 print("Failed\nPlease check your username and/or password")
                 return False
