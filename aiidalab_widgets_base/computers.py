@@ -228,7 +228,7 @@ class SshComputerSetup(ipw.VBox):
                 "-o",
                 "BatchMode=yes",
                 "-o",
-                "ConnectTimeout=5",
+                "ConnectTimeout=30",
                 "true",
             ]
         )
