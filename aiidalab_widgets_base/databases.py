@@ -358,6 +358,8 @@ class CodeDatabaseWidget(ipw.HBox):
         self.database = requests.get(
             "https://aiidateam.github.io/aiida-code-registry/database.json"
         ).json()
+        with open('/opt/computers_codes.json', 'r') as fo:
+            self.database = json.load(fo)
         self.inp_domain.options = self.database.keys()
 
     def update_computers(self, _=None):
