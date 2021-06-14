@@ -267,9 +267,11 @@ class ComputerDatabaseWidget(ipw.HBox):
         )
 
     def update(self, _=None):
-        self.database = requests.get(
-            "https://aiidateam.github.io/aiida-code-registry/database.json"
-        ).json()
+        #self.database = requests.get(
+        #    "https://aiidateam.github.io/aiida-code-registry/database.json"
+        #).json()
+        with open('/opt/computers_codes.json', 'r') as fo:
+            self.database = json.load(fo)
         self.domain.options = self.database.keys()
 
     def update_computers(self, _=None):
