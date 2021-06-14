@@ -1,4 +1,6 @@
 """Widgets that allow to query online databases."""
+import requests
+import json
 import ipywidgets as ipw
 import requests
 from aiida.tools.dbimporters.plugins.cod import CodDbImporter
