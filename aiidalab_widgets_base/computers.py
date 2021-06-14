@@ -287,7 +287,7 @@ class SshComputerSetup(ipw.VBox):
 
         timeout = 60
         print("Sending public key to {}... ".format(hostname), end="")
-        str_ssh = "ssh-copy-id {}@{}".format(username, hostname)
+        str_ssh = "HOME=/home/notebook ssh-copy-id {}@{}".format(username, hostname)
         if proxycmd:
             str_ssh += ' -o "ProxyCommand ssh -q -Y ' + proxycmd + ' netcat %h %p\n"'
         child = pexpect.spawn(str_ssh)
