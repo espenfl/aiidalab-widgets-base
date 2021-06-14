@@ -290,7 +290,7 @@ class SshComputerSetup(ipw.VBox):
         str_ssh = "ssh-copy-id {}@{}".format(username, hostname)
         if proxycmd:
             str_ssh += ' -o "ProxyCommand ssh -q -Y ' + proxycmd + ' netcat %h %p\n"'
-        child = pexpect.spawn(str_ssh)
+        child = pexpect.spawn(str_ssh, env = {"HOME": "/home/notebook"})
         try:
             index = child.expect(
                 [
