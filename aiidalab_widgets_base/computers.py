@@ -228,7 +228,7 @@ class SshComputerSetup(ipw.VBox):
                 "-o",
                 "BatchMode=yes",
                 "-o",
-                "ConnectTimeout=30",
+                "ConnectTimeout=60",
                 "true",
             ]
         )
@@ -285,9 +285,9 @@ class SshComputerSetup(ipw.VBox):
         """Send a publick key to a remote host."""
         from pexpect import TIMEOUT
 
-        timeout = 10
+        timeout = 60
         print("Sending public key to {}... ".format(hostname), end="")
-        str_ssh = "ssh-copy-id {}@{}".format(username, hostname)
+        str_ssh = "ssh-copy-id -i ~/.ssh/id_rsa {}@{}".format(username, hostname)
         if proxycmd:
             str_ssh += ' -o "ProxyCommand ssh -q -Y ' + proxycmd + ' netcat %h %p\n"'
         child = pexpect.spawn(str_ssh)
